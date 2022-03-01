@@ -17,6 +17,9 @@ import {
   Image,
   TouchableOpacity,
   TouchableHighlight,
+  KeyboardAvoidingView,
+  TextInput,
+  ScrollView,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -47,6 +50,11 @@ function HomeScreen({navigation}) {
         color="orange"
         title="Tela 3"
         onPress={() => navigation.navigate('Tela3')}
+      />
+      <Button
+        color="orange"
+        title="Tela 4"
+        onPress={() => navigation.navigate('Tela4')}
       />
     </View>
   );
@@ -108,6 +116,34 @@ function Tela3() {
     </View>
   );
 }
+function Tela4() {
+  return (
+    <KeyboardAvoidingView style={styles.login}>
+      <View style={styles.containerLogo}>
+        <Image source={require('./img/game1.jpg')} />
+      </View>
+      <View style={styles.containerLogin}>
+        <TextInput
+          style={styles.input}
+          placeholder="email"
+          onChangeText={() => {}}
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="senha"
+          onChangeText={() => {}}
+        />
+        <TouchableOpacity activeOpacity={0.7} style={styles.btnSubmit}>
+          <Text style={styles.submitText}>Entrar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btnCadastro}>
+          <Text>Cadastrar</Text>
+        </TouchableOpacity>
+      </View>
+    </KeyboardAvoidingView>
+  );
+}
 
 const Stack = createNativeStackNavigator();
 
@@ -145,6 +181,14 @@ const App = () => {
           component={Tela3}
           options={{
             title: 'Tela 3',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Tela4"
+          component={Tela4}
+          options={{
+            title: 'Tela 4',
             headerShown: false,
           }}
         />
@@ -320,6 +364,51 @@ const styles = StyleSheet.create({
   },
   icon5: {
     padding: 20,
+  },
+  login: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#191919',
+  },
+  containerLogo: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  containerLogin: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '90%',
+  },
+  input: {
+    backgroundColor: '#FFFFFFA4',
+    width: '90%',
+    fontSize: 20,
+    marginTop: 20,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    textAlign: 'center',
+    borderRadius: 25,
+  },
+  btnSubmit: {
+    backgroundColor: '#4B2020',
+    width: '60%',
+    height: 50,
+    borderRadius: 25,
+    marginTop: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: '#FFF',
+    fontSize: 20,
+  },
+  submitText: {
+    color: '#FFF',
+    fontSize: 20,
+  },
+  btnCadastro: {
+    marginTop: 10,
   },
 });
 
