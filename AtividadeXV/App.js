@@ -7,7 +7,7 @@
  */
 // In App.js in a new project
 
-import React, {Component} from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -20,6 +20,7 @@ import {
   KeyboardAvoidingView,
   TextInput,
   ScrollView,
+  Animated,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -117,12 +118,34 @@ function Tela3() {
   );
 }
 function Tela4() {
+  const [offset] = useState(new Animated.ValueXY({x: 0, y: -200}));
+
+  useEffect(() => {
+    Animated.spring(offset.y, {
+      toValue: 0,
+      speed: 2,
+      bounciness: 20,
+      useNativeDriver: true,
+    }).start();
+  }, [offset.y]);
+
   return (
     <KeyboardAvoidingView style={styles.login}>
+      <StatusBar style={{flex: 1}} backgroundColor="#191919" />
       <View style={styles.containerLogo}>
-        <Image source={require('./img/game1.jpg')} />
+        <Image source={require('./img/fundo2.jpg')} />
       </View>
-      <View style={styles.containerLogin}>
+      <Animated.View
+        useNativeDriver="true"
+        // eslint-disable-next-line no-sparse-arrays
+        style={[
+          styles.containerLogin,
+          {
+            transform: [{translateY: offset.y}],
+          },
+          ,
+        ]}>
+        <Text style={styles.textLogin}>Login</Text>
         <TextInput
           style={styles.input}
           placeholder="email"
@@ -137,10 +160,10 @@ function Tela4() {
         <TouchableOpacity activeOpacity={0.7} style={styles.btnSubmit}>
           <Text style={styles.submitText}>Entrar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btnCadastro}>
-          <Text>Cadastrar</Text>
+        <TouchableOpacity>
+          <Text style={styles.btnCadastro}>Fazer cadastro</Text>
         </TouchableOpacity>
-      </View>
+      </Animated.View>
     </KeyboardAvoidingView>
   );
 }
@@ -391,6 +414,16 @@ const styles = StyleSheet.create({
     marginRight: 10,
     textAlign: 'center',
     borderRadius: 25,
+    borderColor: '#22313175',
+    borderWidth: 5,
+  },
+  textLogin: {
+    color: '#860F0F',
+    fontWeight: 'bold',
+    fontSize: 50,
+    textShadowColor: 'rgba(260, 241,240, 3.75)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10,
   },
   btnSubmit: {
     backgroundColor: '#4B2020',
@@ -408,7 +441,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   btnCadastro: {
-    marginTop: 10,
+    fontSize: 18,
+    marginTop: 20,
+    marginBottom: 80,
+    color: '#FFF',
   },
 });
 
