@@ -87,7 +87,12 @@ function Tela3() {
       <StatusBar backgroundColor="black" />
       <Image source={require('./img/fundo4.jpg')} style={styles.bkg2} />
       <View style={styles.container4}>
-        <Text style={styles.titulo2}>Assista já!</Text>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={clickHandler}
+          style={styles.info}>
+          <Text style={styles.titulo2}>Assista já!</Text>
+        </TouchableOpacity>
         <Text style={styles.sobre}>Disponível em todas as plataformas</Text>
       </View>
       <View style={styles.redes}>
@@ -282,7 +287,7 @@ const styles = StyleSheet.create({
   },
   titulo2: {
     width: '80%',
-    height: '40%',
+    height: '100%',
     backgroundColor: '#491818',
     textAlign: 'center',
     fontSize: 25,
