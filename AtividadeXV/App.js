@@ -101,7 +101,7 @@ function Tela3() {
           onPress={clickHandler}
           style={styles.info}>
           <Text style={styles.titulo2}>Assista já!</Text>
-        </TouchableOpacity>
+        </TouchableOpacity >
         <Text style={styles.sobre}>Disponível em todas as plataformas</Text>
       </View>
       <View style={styles.redes}>
@@ -157,10 +157,10 @@ function Tela4() {
           placeholder="senha"
           onChangeText={() => {}}
         />
-        <TouchableOpacity activeOpacity={0.7} style={styles.btnSubmit}>
+        <TouchableOpacity activeOpacity={0.7} style={styles.btnSubmit} onPress={clickHandler}>
           <Text style={styles.submitText}>Entrar</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.7} onPress={clickHandler}>
           <Text style={styles.btnCadastro}>Fazer cadastro</Text>
         </TouchableOpacity>
       </Animated.View>
